@@ -158,3 +158,31 @@ html, body { max-width: 100%; overflow-x: clip; }
   border-radius: 10px;
   flex-shrink: 0;
 }
+
+/* تصاویر بخش خدمات */
+.resource-list a {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.resource-image {
+  width: 88px;
+  height: 72px;
+  object-fit: cover;
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+
+.resource-list a > span:not(.resource-icon) {
+  flex: 1;
+  min-width: 0;
+}
+
+@media (max-width: 760px) {
+  .resource-image {
+    width: 68px;
+    height: 60px;
+  }
+}
+
