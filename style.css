@@ -143,9 +143,9 @@ html, body { max-width: 100%; overflow-x: clip; }
 }
 @media (max-width: 420px) { .image-slot-grid { grid-template-columns: 1fr; } }
 .brand-logo {
-  width: 40px !important;
-  height: 40px !important;
-  max-width: 40px !important;
+  width: 50px !important;
+  height: 50px !important;
+  max-width: 50px !important;
   object-fit: contain;
   display: block;
   flex-shrink: 0;
