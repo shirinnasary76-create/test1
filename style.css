@@ -392,4 +392,56 @@ html, body { max-width: 100%; overflow-x: clip; }
   }
 }
 
+/* بزرگ‌تر کردن کارت‌های بخش خدمات */
+.services-detail .container {
+  max-width: 1200px;
+  width: 94%;
+}
+
+.services-detail .resource-list {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+}
+
+.services-detail .resource-list > a {
+  min-height: 340px;
+  border-radius: 14px;
+}
+
+.services-detail .resource-image {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.services-detail .resource-list .resource-copy {
+  padding: 22px 24px 28px;
+  gap: 12px;
+}
+
+.services-detail .resource-list .resource-copy b {
+  font-size: 17px;
+  line-height: 1.9;
+}
+
+.services-detail .resource-list .resource-copy small {
+  font-size: 13px;
+  line-height: 2;
+}
+
+@media (max-width: 760px) {
+  .services-detail .container {
+    width: 92%;
+  }
+
+  .services-detail .resource-list {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .services-detail .resource-image {
+    height: 220px;
+  }
+}
+
 
