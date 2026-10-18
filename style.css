@@ -487,30 +487,67 @@ html, body { max-width: 100%; overflow-x: clip; }
 
 @media (max-width: 900px) {
   .image-menu {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
 
-  .image-menu-card {
-    height: 240px;
+
+<section class="image-carousel">
+  <div class="image-track">
+    <img src="images/image1.jpg" alt="">
+    <img src="images/image2.jpg" alt="">
+    <img src="images/image3.jpg" alt="">
+    <img src="images/image4.jpg" alt="">
+    <img src="images/image5.jpg" alt="">
+
+    <!-- تکرار تصاویر برای حرکت پیوسته -->
+    <img src="images/image1.jpg" alt="">
+    <img src="images/image2.jpg" alt="">
+    <img src="images/image3.jpg" alt="">
+    <img src="images/image4.jpg" alt="">
+    <img src="images/image5.jpg" alt="">
+  </div>
+</section>
+
+<style>
+.image-carousel {
+  width: 100%;
+  overflow: hidden;
+  direction: ltr;
+  padding: 15px 0;
+}
+
+.image-track {
+  display: flex;
+  width: max-content;
+  gap: 16px;
+  animation: imageScroll 30s linear infinite;
+}
+
+.image-track img {
+  display: block;
+  flex: 0 0 240px;
+  width: 240px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.image-carousel:hover .image-track {
+  animation-play-state: paused;
+}
+
+@keyframes imageScroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
   }
 }
 
-@media (max-width: 520px) {
-  .image-menu {
-    gap: 10px;
-  }
-
-  .image-menu-card {
-    height: 180px;
-    border-radius: 10px;
+@media (max-width: 600px) {
+  .image-track img {
+    flex-basis: 170px;
+    width: 170px;
+    height: 120px;
   }
 }
-
-@media (prefers-reduced-motion: reduce) {
-  .image-menu-card,
-  .image-menu-card img {
-    transition: none;
-  }
-}
-
-
+</style>
