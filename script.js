@@ -46,3 +46,78 @@ pathwayCards.forEach(card => {
     }
   });
 });
+
+(function () {
+  const searchSection = document.getElementById("service-search");
+  const input = document.getElementById("serviceSearchInput");
+  const button = document.getElementById("serviceSearchButton");
+  const message = document.getElementById("serviceSearchMessage");
+
+  if (!searchSection || !input || !button || !message) return;
+
+  const tables = Array.from(document.querySelectorAll("table"));
+
+  const table = tables.find(function (item) {
+    return Boolean(
+      searchSection.compareDocumentPosition(item) &
+      Node.DOCUMENT_POSITION_FOLLOWING
+    );
+  });
+
+  if (!table) {
+    message.textContent =
+      "جدولی بعد از بخش جست‌وجو پیدا نشد؛ جای جدول را بررسی کنید.";
+    return;
+  }
+
+  const rows = Array.from(table.querySelectorAll("tbody tr"));
+
+  function normalizeText(text) {
+    return text
+      .toLowerCase()
+      .replace(/[يى]/g, "ی")
+      .replace(/ك/g, "ک")
+      .replace(/[۰-۹]/g, function (digit) {
+        return "۰۱۲۳۴۵۶۷۸۹".indexOf(digit);
+      })
+      .replace(/[٠-٩]/g, function (digit) {
+        return "٠١٢٣٤٥٦٧٨٩".indexOf(digit);
+      })
+      .replace(/\s+/g, " ")
+      .trim();
+  }
+
+  function searchServices() {
+    const query = normalizeText(input.value);
+    let visibleCount = 0;
+
+    rows.forEach(function (row) {
+      const rowText = normalizeText(row.innerText);
+      const matches = !query || rowText.includes(query);
+
+      row.hidden = !matches;
+
+      if (matches) visibleCount++;
+    });
+
+    if (!query) {
+      message.textContent = "";
+    } else if (visibleCount > 0) {
+      message.textContent =
+        visibleCount + " مورد مطابق جست‌وجو پیدا شد.";
+    } else {
+      message.textContent =
+        "موردی پیدا نشد؛ نام خدمت را بررسی کنید.";
+    }
+  }
+
+  input.addEventListener("input", searchServices);
+  button.addEventListener("click", searchServices);
+
+  input.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      searchServices();
+    }
+  });
+})();
